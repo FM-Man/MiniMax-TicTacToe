@@ -8,11 +8,22 @@ public class Node {
     boolean terminalNode = true;
     int eval;
     NodeType type;
+    int alphaBeta;
+    int tempParentAlphaBeta;
 
-    public Node(int[][] inputState, NodeType nt) {
+    public Node(int[][] inputState, NodeType nt, Node parent) {
         this.state = inputState;
         this.type = nt;
         Main.nodeCount++;
+        this.parent = parent;
+
+        if(type.equals(NodeType.MAX))
+            alphaBeta = Integer.MIN_VALUE;
+        else alphaBeta = Integer.MAX_VALUE;
+
+        if(parent!=null)
+            tempParentAlphaBeta = this.parent.alphaBeta;
+        else tempParentAlphaBeta = Integer.MAX_VALUE;
 
         for(int i=0; i<3;i++){
             for(int j=0; j<3; j++){
@@ -24,29 +35,38 @@ public class Node {
             if(!terminalNode)
                 break;
         }
-        if(terminalNode)
+        if(terminalNode) {
             eval = win();
+        }
         else{
             if(win()!=0){
                 terminalNode = true;
                 eval = win();
             }
             else {
-                for(int i=0; i<3; i++){
-                    for(int j=0; j<3; j++){
-                        if(state[i][j]==0){
-                            int[][] temp = Main.clone(state);
-                            temp[i][j]= type.equals(NodeType.MAX) ? 1 : -1;
+                for(int i=0; i<9; i++){
+                    if(state[i/3][i%3]==0){
+                        int[][] temp = Main.clone(state);
+                        temp[i/3][i%3]= type.equals(NodeType.MAX) ? 1 : -1;
+                        NodeType newType = type.equals(NodeType.MAX)? NodeType.MIN:NodeType.MAX;
+                        Node n = new Node(temp,newType,this);
+                        children.add(n);
 
-                            NodeType newType = type.equals(NodeType.MAX)? NodeType.MIN:NodeType.MAX;
-                            Node n = new Node(temp,newType);
-                            n.parent = this;
-                            children.add(n);
+                        if (!pushUpwards()) {
+                            break;
                         }
                     }
                 }
-
                 eval= evaluate();
+                tempParentAlphaBeta = eval;
+                setParent();
+            }
+        }
+
+        if(terminalNode){
+            alphaBeta = eval;
+            if(pushUpwards()){
+                setParent();
             }
         }
     }
@@ -81,7 +101,6 @@ public class Node {
         return childEval;
     }
 
-
     private int min(){
         int childEval= Integer.MAX_VALUE;
         for(Node n: children){
@@ -113,5 +132,36 @@ public class Node {
             System.out.println(Arrays.toString(a));
         }
         System.out.println("------------------------------------------------");
+    }
+
+    private boolean pushUpwards(){
+        if(type.equals(NodeType.MAX)){
+            if(alphaBeta<= tempParentAlphaBeta){
+                tempParentAlphaBeta = alphaBeta;
+                return true;
+            }
+            else return false;
+        }
+        else {
+            if(alphaBeta>=tempParentAlphaBeta){
+                tempParentAlphaBeta = alphaBeta;
+                return true;
+            }
+            else return false;
+        }
+    }
+
+    private void setParent(){
+        if(parent != null){
+            if(type.equals(NodeType.MAX)){
+                if(tempParentAlphaBeta<=parent.alphaBeta){
+                    parent.alphaBeta = tempParentAlphaBeta;
+                }
+            } else {
+                if(tempParentAlphaBeta >= parent.alphaBeta){
+                    parent.alphaBeta = tempParentAlphaBeta;
+                }
+            }
+        }
     }
 }

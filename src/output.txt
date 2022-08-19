@@ -1,0 +1,205 @@
+   |   |
+-----------
+   |   |
+-----------
+   |   |
+
+Enter cell: 1
+ X |   |
+-----------
+   |   |
+-----------
+   |   |
+
+AI Thinking
+
+59705 node created
+
+ X |   |
+-----------
+   | @ |
+-----------
+   |   |
+
+Enter cell: 2
+ X | X |
+-----------
+   | @ |
+-----------
+   |   |
+
+AI Thinking
+
+935 node created
+
+ X | X | @
+-----------
+   | @ |
+-----------
+   |   |
+
+Enter cell: 7
+ X | X | @
+-----------
+   | @ |
+-----------
+ X |   |
+
+AI Thinking
+
+47 node created
+
+ X | X | @
+-----------
+ @ | @ |
+-----------
+ X |   |
+
+Enter cell: 6
+ X | X | @
+-----------
+ @ | @ | X
+-----------
+ X |   |
+
+AI Thinking
+
+5 node created
+
+ X | X | @
+-----------
+ @ | @ | X
+-----------
+ X | @ |
+
+Enter cell: 9
+ X | X | @
+-----------
+ @ | @ | X
+-----------
+ X | @ | X
+
+
+Match Drawn
+
+Process finished with exit code 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   |   |
+-----------
+   |   |
+-----------
+   |   |
+
+Enter cell: 1
+ X |   |
+-----------
+   |   |
+-----------
+   |   |
+
+AI Thinking
+
+5919 node created
+
+ X |   |
+-----------
+   | @ |
+-----------
+   |   |
+
+Enter cell: 2
+ X | X |
+-----------
+   | @ |
+-----------
+   |   |
+
+AI Thinking
+
+49 node created
+
+ X | X | @
+-----------
+   | @ |
+-----------
+   |   |
+
+Enter cell: 7
+ X | X | @
+-----------
+   | @ |
+-----------
+ X |   |
+
+AI Thinking
+
+17 node created
+
+ X | X | @
+-----------
+ @ | @ |
+-----------
+ X |   |
+
+Enter cell: 6
+ X | X | @
+-----------
+ @ | @ | X
+-----------
+ X |   |
+
+AI Thinking
+
+5 node created
+
+ X | X | @
+-----------
+ @ | @ | X
+-----------
+ X | @ |
+
+Enter cell: 9
+ X | X | @
+-----------
+ @ | @ | X
+-----------
+ X | @ | X
+
+
+Match Drawn
+
+Process finished with exit code 0

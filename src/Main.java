@@ -1,11 +1,10 @@
 import java.util.Scanner;
 
 public class Main {
+
     public  static int[][] boardState = new int[3][3];
     public static int turn = -1;
     public static int nodeCount = 0;
-    public static int alpha;
-    private static int beta;
 
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
@@ -28,10 +27,16 @@ public class Main {
 
 
             if(gameNotEnded()){
-                System.out.println("\nAI Thinking\n");
+                System.out.print("\nAI Thinking");
+//                Thread.sleep(500);
+//                System.out.print(".");
+//                Thread.sleep(500);
+//                System.out.print(".");
+//                Thread.sleep(500);
+                System.out.print(".\n\n");
                 nodeCount=0;
-                Node root = new Node(clone(boardState),NodeType.MAX);
-                System.out.println(nodeCount+" node created\n");
+                Node root = new Node(clone(boardState),NodeType.MAX, null);
+
                 Node bestChild = null;
                 for (Node c: root.children){
                     if(root.eval== c.eval){
@@ -52,13 +57,15 @@ public class Main {
                     }
                     else throw new Exception("AI ager position ei dite chay");
                 }
-                else throw new Exception("AI baire dite chay position ei dite chay");
+                else throw new Exception("AI baire dite chay");
+
+//                Thread.sleep(500);
+                System.out.println(nodeCount+" node created\n");
                 print();
 
             }
         }
 
-//        print();
         if(win()==0)
             System.out.println("\n\nMatch Drawn");
         else if(win()==-1)
@@ -143,4 +150,5 @@ public class Main {
         }
         return clone;
     }
+
 }
